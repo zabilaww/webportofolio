@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pesan Masuk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <style>
+    :root {
+      --primary-bg: #273760;
+      --secondary-bg: #1f2a40;
+      --accent-color: #89c3f3;
+      --purple-accent: #aa80c7;
+      --text-color: #f7f7f7;
+      --input-bg: #3a4a70;
+      --button-logout: #dc3545;
+      --button-hover-logout: #c82333;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--primary-bg);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header, footer {
+      background-color: var(--secondary-bg);
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background-color: var(--primary-bg);
+      text-align: center;
+      padding: 10px;
+    }
+
+    nav a {
+      color: var(--text-color);
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .container {
+      flex-grow: 1;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .item {
+      background-color: var(--input-bg);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .item .button-group {
+      margin-top: 10px;
+    }
+
+    .item .button-group button {
+      background-color: var(--button-logout);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .item .button-group button:hover {
+      background-color: var(--button-hover-logout);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Pesan Masuk</h1>
+</header>
+
+<nav>
+  <a href="admin_dashboard.html">Dashboard</a>
+  <a href="tambah.html">Tambah</a>
+  <a href="edit.html">Edit</a>
+</nav>
+
+<div class="container">
+  <h2>📥 Daftar Pesan Masuk</h2>
+  <div id="contact-messages">Memuat pesan...</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-text">
+      <p>Made by © Gustria Nabila | All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const SUPABASE_URL = 'https://tttsdivqlckeigowtlqu.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0dHNkaXZxbGNrZWlnb3d0bHF1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MTE4MzQ0MywiZXhwIjoyMDY2NzU5NDQzfQ.xO2uVz5--Y4dp9okjvMqBRh4SfKo73R1EPrmFppwEvA';
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  async function checkAdmin() {
+    const { data } = await supabaseClient.auth.getSession();
+    const session = data.session;
+    if (!session || session.user.email !== 'nabilagustria@gmail.com') {
+      alert("❌ Akses ditolak. Login sebagai admin terlebih dahulu.");
+      window.location.href = "login.html";
+    } else {
+      console.log("✅ Login sebagai admin:", session.user.email);
+      fetchContactMessages();
+    }
+  }
+
+  async function deleteItem(table, id, bucket, imageUrl) {
+    if (!confirm(`Yakin ingin menghapus dari ${table}?`)) return;
+    if (imageUrl) await deleteImage(bucket, imageUrl);
+    const { error } = await supabaseClient.from(table).delete().eq('id', id);
+    if (error) alert("Gagal hapus item: " + error.message);
+    else alert("✅ Item berhasil dihapus!");
+  }
+
+  async function deleteMessage(id) {
+    if (!confirm("Anda yakin ingin menghapus pesan ini?")) return;
+    const { error } = await supabaseClient.from('contact_messages').delete().eq('id', id);
+    if (error) {
+      alert('❌ Gagal menghapus pesan: ' + error.message);
+    } else {
+      alert('✅ Pesan berhasil dihapus!');
+      fetchContactMessages();
+    }
+  }
+
+  async function fetchContactMessages() {
+    const container = document.getElementById('contact-messages');
+    const { data, error } = await supabaseClient.from('contact_messages').select('*').order('created_at', { ascending: false });
+    if (error) {
+      container.innerHTML = '<p style="color: red;">Gagal memuat pesan</p>';
+      return;
+    }
+    if (!data || data.length === 0) {
+      container.innerHTML = '<p style="color: #aaa;">Belum ada pesan masuk.</p>';
+      return;
+    }
+    container.innerHTML = '';
+    data.forEach(msg => {
+      const msgBox = document.createElement('div');
+      msgBox.classList.add('item');
+      msgBox.innerHTML = `
+        <p><strong>Nama:</strong> ${msg.name}</p>
+        <p><strong>Email:</strong> ${msg.email}</p>
+        <p><strong>Pesan:</strong><br>${msg.message}</p>
+        <div class="button-group">
+          <button class="delete-btn" onclick="deleteMessage('${msg.id}')">Hapus</button>
+        </div>
+      `;
+      container.appendChild(msgBox);
+    });
+  }
+
+  supabaseClient
+    .channel('realtime_contact_messages')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'contact_messages' }, payload => {
+      console.log("📩 Realtime Form Letter:", payload);
+      fetchContactMessages();
+    })
+    .subscribe();
+
+  document.addEventListener("DOMContentLoaded", checkAdmin);
+</script>
+</body>
+</html>

@@ -1,0 +1,1138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Reset dan Box Sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Optional: Untuk debugging konten yang bisa diedit */
+[contenteditable="true"] {
+    background-color: rgba(255, 255, 0, 0.1);
+}
+
+/* Definisi Variabel Warna untuk Mode Terang (Default) */
+:root {
+    --bg-color: #fdfdfd;
+    --text-color: #333;
+    --main-color: #79bbb8;
+    --white-color: #fdfdfd;
+    --black-color: #000;
+    --shadow-color: rgba(0, 0, 0, .2);
+    --second-bg-color: #f8f8f8;
+}
+
+/* Definisi Variabel Warna untuk Mode Gelap */
+.dark-mode {
+    --bg-color: #0b061f;
+    --text-color: #fdfdfd;
+    --main-color: #79bbb8;
+    --white-color: #1a1a1a;
+    --black-color: #fdfdfd;
+    --shadow-color: rgba(0, 0, 0, .7);
+    --second-bg-color: #1a1532;
+}
+
+/* Transisi Global untuk Perubahan Tema yang Halus */
+body, .header, .navbar a, #darkMode-icon, .home .profession-box .profession,
+.home .profession-box .circle, .home .profession-container .overlay,
+.social-media a, .btn, .about-img img, .services-container .services-box,
+.testimonial-content .testimonial-slide, .contact form .input-box input,
+.contact form textarea, .footer, .footer-iconTop a,
+.project-box .portfolio-layer {
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Seleksi Teks */
+*::selection {
+    background: var(--main-color);
+    color: var(--bg-color);
+}
+
+/* HTML dan Body Dasar */
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 7%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.header.sticky {
+    background: var(--bg-color);
+    box-shadow: 0 .1rem 1rem var(--shadow-color);
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--main-color);
+    font-weight: 600;
+    margin-right: auto;
+}
+
+/* Navbar */
+.navbar a {
+    position: relative;
+    font-size: 1.7rem;
+    color: var(--white-color);
+    font-weight: 500;
+    margin-right: 3.5rem;
+}
+
+.header.sticky .navbar a {
+    color: var(--text-color);
+}
+
+.header.sticky .navbar a.active {
+    color: var(--main-color);
+}
+
+.navbar a.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: .2rem;
+    background: var(--white-color);
+}
+
+.header.sticky .navbar a::before {
+    background: var(--main-color);
+    opacity: .7;
+}
+
+/* Dark Mode Icon */
+#darkMode-icon {
+    font-size: 2.4rem;
+    color: var(--white-color);
+    cursor: pointer;
+}
+
+.header.sticky #darkMode-icon {
+    color: var(--text-color);
+    opacity: .9;
+}
+
+/* Menu Icon (Hanya untuk Mobile) */
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--text-color);
+    display: none;
+}
+
+/* Semua Section */
+section {
+    min-height: 100vh;
+    padding: 10rem 7% 2rem;
+    background: var(--second-bg-color);
+}
+
+/* Section Home - Desktop Defaults */
+.home {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between;  Kita akan atur manual posisi gambar */
+    padding: 10rem 7% 2rem;
+    background: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.home-content {
+    max-width: 44rem;
+    position: relative;
+    z-index: 10;
+    text-align: left;
+    /* PENTING: Beri ruang di kanan untuk gambar dan profesi box */
+    margin-right: 30%; /* Atau sesuaikan sesuai kebutuhan Anda */
+}
+
+.home-content h3 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: .3;
+    color: var(--text-color);
+}
+
+.home-content h1 {
+    font-size: 5.6rem;
+    font-weight: 700;
+    margin-bottom: .3rem;
+    color: var(--text-color);
+}
+
+.home-content p {
+    font-size: 1.6rem;
+    color: var(--text-color);
+}
+
+/* Social Media Icons */
+.home-content .social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: transparent;
+    border: .2rem solid var(--main-color);
+    border-radius: 50%;
+    box-shadow: 0 .2rem .5rem var(--shadow-color);
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 2.5rem 1.5rem 3rem 0;
+    transition: .5s ease;
+}
+
+.home-content .social-media a:hover {
+    background: var(--main-color);
+    color: var(--white-color);
+}
+
+/* Button */
+.btn {
+    display: inline-block;
+    padding: 1.2rem 2.8rem;
+    background: var(--main-color);
+    border-radius: .6rem;
+    box-shadow: 0 .2rem .5rem var(--shadow-color);
+    font-size: 1.6rem;
+    color: var(--white-color);
+    letter-spacing: .1rem;
+    font-weight: 600;
+    border: .2rem solid transparent;
+    transition: .5s ease;
+}
+
+.btn:hover {
+    background: transparent;
+    color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+/* Profession Container - Desktop Specific */
+.home .profession-container {
+    position: absolute;
+    top: 50%;
+    right: 0; /* Posisikan ke paling kanan */
+    transform: translateY(-50%);
+    width: 768px; /* Lebar sesuai desain segitiga/lingkaran */
+    height: 100vh;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 5; /* Pastikan di bawah gambar profil */
+    display: block;
+}
+
+.home .profession-container .profession-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 768px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: professionRotate 13s ease-out infinite;
+}
+
+@keyframes professionRotate {
+    0%, 20% { transform: rotate(0deg); }
+    25%, 45% { transform: rotate(-90deg); }
+    50%, 70% { transform: rotate(-180deg); }
+    75%, 95% { transform: rotate(-270deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+.home .profession-box .profession {
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: var(--main-color);
+    transform: rotate(calc(360deg / 4 * var(--i)));
+    transform-origin: 384px;
+    background: var(--bg-color);
+    padding: 13px 0;
+}
+
+.home .profession-box .profession:nth-child(1) i {
+    margin-right: 15px;
+}
+
+.home .profession-box .profession:nth-child(2),
+.home .profession-box .profession:nth-child(4) {
+    padding-bottom: 20px;
+}
+
+.home .profession i {
+    font-size: 3.8rem;
+}
+
+.home .profession h3 {
+    font-size: 3.2rem;
+    line-height: 1;
+    font-weight: 600;
+}
+
+.home .profession-box .circle {
+    width: 560px;
+    height: 560px;
+    border: 3px solid var(--main-color);
+    border-radius: 50%;
+    z-index: -1;
+    display: block;
+}
+
+.home .profession-container .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 50vh solid var(--main-color);
+    border-right: 384px solid var(--main-color);
+    border-bottom: 50vh solid var(--main-color);
+    border-left: 384px solid transparent;
+    display: block;
+}
+
+/* HOME IMAGE (YOUR PROFILE PICTURE) - MASUK KE DALAM AREA BERWARNA */
+.home-img {
+    position: absolute;
+    /* Posisikan relatif terhadap .home */
+    top: 50%; /* Tengah secara vertikal dari section home */
+    right: 55px; /* Posisikan di paling kanan dari section home */
+    transform: translateY(-50%); /* Penyesuaian untuk tengah vertikal */
+    width: 400px; /* Lebar container gambar, sesuaikan ini */
+    height: 100%; /* Agar gambar bisa menempati tinggi penuh home section jika diinginkan */
+    display: flex;
+    justify-content: flex-start; /* Posisikan gambar di kiri container ini (yang ada di paling kanan) */
+    align-items: center; /* Pusatkan gambar secara vertikal dalam container ini */
+    z-index: 10; /* Pastikan di atas profession-container dan overlay */
+    pointer-events: none;
+    overflow: hidden; /* Penting untuk memotong gambar jika terlalu besar */
+}
+
+.home-img img {
+    max-width: 100%; /* Gambar akan mengisi lebar container home-img */
+    height: auto; /* Jaga rasio aspek */
+    display: block;
+    object-fit: contain; /* Pastikan gambar masuk tanpa terpotong */
+    /* Mungkin perlu penyesuaian posisi gambar di dalam .home-img jika gambar tidak simetris */
+    /* Contoh: transform: translateX(-20px); atau margin-left: -20px; */
+    transform: translateX(-20px); /* Adjust to move image more into the colored area */
+    max-height: 90vh; /* Sesuaikan jika gambar terlalu tinggi */
+    margin-left: -20px;
+}
+
+
+
+/* Warna Span (Aksen) */
+span {
+    color: var(--main-color);
+}
+
+/* Section About */
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    background: var(--second-bg-color);
+}
+
+.about-img img {
+    width: 30vw;
+    border-radius: 20px;
+}
+
+.heading {
+    font-size: 4.5rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.about-content h2 {
+    text-align: left;
+    line-height: 1.2;
+    color: var(--text-color);
+}
+
+.about-content h3 {
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+.about-content p {
+    font-size: 1.6rem;
+    margin: 2rem 0 3rem;
+    color: var(--text-color);
+}
+
+/* Section Services */
+.services {
+    min-height: auto;
+    padding-bottom: 10rem;
+    background: var(--bg-color);
+}
+
+.services h2 {
+    margin-bottom: 5rem;
+}
+
+.services .services-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.services-container .services-box {
+    flex: 1 1 30rem;
+    background: var(--second-bg-color);
+    padding: 3rem 2rem 4rem;
+    border-radius: 2rem;
+    box-shadow: 0 .1rem .5rem var(--shadow-color);
+    text-align: center;
+    border-top: .6rem solid var(--main-color);
+    border-bottom: .6rem solid var(--main-color);
+    transition: .5s ease;
+}
+
+.services-container .services-box:hover {
+    box-shadow: 0 .1rem 2rem var(--shadow-color);
+    transform: scale(1.02);
+}
+
+.services-box i {
+    font-size: 7rem;
+    color: var(--main-color);
+}
+
+.services-box h3 {
+    font-size: 2.6rem;
+    transition: .5s ease;
+    color: var(--main-color);
+}
+
+.services-box:hover h3 {
+    color: var(--main-color);
+}
+
+.services-box p {
+    font-size: 1.6rem;
+    margin: 1rem 0 3rem;
+    color: var(--text-color);
+}
+
+/* Section Project (Portfolio) */
+.project {
+    min-height: auto;
+    padding-bottom: 10rem;
+    background: var(--second-bg-color);
+}
+
+.project h2 {
+    margin-bottom: 4rem;
+}
+
+.project .project-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.project-container .project-box {
+    position: relative;
+    display: flex;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem var(--shadow-color);
+    overflow: hidden;
+}
+
+.project-box img {
+    width: 100%;
+    transition: .5s ease;
+    border-radius: 20px;
+}
+
+.project-box:hover img {
+    transform: scale(1.1);
+}
+
+.project-box .portfolio-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, .1), var(--main-color));
+    color: var(--white-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 4rem;
+    opacity: 0;
+}
+
+.project-box:hover .portfolio-layer {
+    opacity: 1;
+}
+
+.portfolio-layer h4 {
+    font-size: 3rem;
+}
+
+.portfolio-layer p {
+    font-size: 1.6rem;
+    margin: .3rem 0 1rem;
+}
+
+.portfolio-layer a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background: var(--white-color);
+    border-radius: 50%;
+}
+
+.portfolio-layer a i {
+    font-size: 2rem;
+    color: var(--text-color);
+}
+
+/* Testimonial Section */
+.testimonial-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 5rem 1rem;
+    background: var(--bg-color);
+}
+
+.testimonial-container .testimonial-wrapper {
+    position: relative;
+    max-width: 100rem;
+    width: 100%;
+    padding: 8rem;
+}
+
+.testimonial-wrapper .testimonial-box {
+    padding: 1rem;
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+.testimonial-content .testimonial-slide {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: var(--second-bg-color);
+    border-radius: 2rem;
+    box-shadow: 0 .1rem .5rem var(--shadow-color);
+    padding: 3rem 5rem;
+    border-top: .8rem solid var(--main-color);
+    border-bottom: .8rem solid var(--main-color);
+}
+
+.testimonial-slide img {
+    width: 14rem;
+    height: 14rem;
+    object-fit: cover;
+    border-radius: 50%;
+    border: .5rem solid var(--bg-color);
+    outline: .5rem solid var(--main-color);
+}
+
+.testimonial-slide h3 {
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    color: var(--text-color);
+}
+
+.testimonial-slide p {
+    font-size: 1.4rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.testimonial-box .swiper-button-next,
+.testimonial-box .swiper-button-prev {
+    color: var(--main-color);
+}
+
+.testimonial-box .swiper-pagination-bullet {
+    background: var(--shadow-color);
+}
+
+.testimonial-box .swiper-pagination-bullet-active {
+    background: var(--main-color);
+}
+
+
+.education {
+        padding: 4rem 2rem;
+        background: #f9f9f9;
+        }
+
+        .education .heading {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        }
+
+        .education-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        }
+
+        .education-box {
+        background: white;
+        padding: 2rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        transition: 0.3s ease;
+        }
+
+        .education-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .education-box h3 {
+        font-size: 1.3rem;
+        color: #333;
+        }
+
+        .education-box .year {
+        font-size: 0.9rem;
+        color: #888;
+        margin-bottom: 0.8rem;
+        display: block;
+        }
+
+        .education-box p {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.6;
+        }
+
+/* Contact Section */
+.contact {
+    min-height: auto;
+    padding-bottom: 7rem;
+    background: var(--bg-color);
+}
+
+.contact h2 {
+    margin-bottom: 3rem;
+}
+
+.contact form {
+    max-width: 70rem;
+    margin: 1rem auto;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: var(--second-bg-color);
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 .1rem .5rem var(--shadow-color);
+}
+
+.contact form .input-box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contact form .input-box input,
+.contact form textarea {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--bg-color);
+    border-radius: .8rem;
+    margin: .7rem 0;
+    box-shadow: 0 .1rem .5rem var(--shadow-color);
+}
+
+.contact form .input-box input {
+    width: 49%;
+}
+
+.contact form textarea {
+    resize: none;
+}
+
+.contact form .btn {
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 7%;
+    background: var(--main-color);
+}
+
+.footer-text p {
+    font-size: 1.6rem;
+    color: var(--white-color);
+}
+
+.footer-iconTop a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    background: var(--white-color);
+    border-radius: .8rem;
+    border: .2rem solid var(--main-color);
+    outline: .2rem solid transparent;
+    transition: .5s ease;
+}
+
+.footer-iconTop a:hover {
+    outline-color: var(--white-color);
+}
+
+.footer-iconTop a i {
+    font-size: 2.4rem;
+    color: var(--text-color);
+}
+
+
+/* --- BREAKPOINTS UNTUK RESPONSIVITAS --- */
+
+/* Tablet & Smaller Desktop (max-width: 1200px) */
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+    .home-content {
+        margin-right: 25%; /* Sesuaikan margin-right */
+    }
+    .home .profession-container .profession-box {
+        right: -10%;
+    }
+    .home .profession-container .overlay {
+        right: -6%;
+    }
+    .home-img {
+        right: 250px; /* Geser gambar lebih ke kiri */
+        width: 400px; /* Sesuaikan lebar */
+    }
+}
+
+/* Desktop Menengah (max-width: 1100px) */
+@media (max-width: 1100px) {
+    .home-content {
+        margin-right: 20%;
+    }
+    .home .profession-container .profession-box {
+        right: -15%;
+    }
+    .home-img {
+        right: 200px;
+        width: 350px;
+    }
+}
+
+/* Tablet Landscape (max-width: 1024px) */
+@media (max-width: 1024px) {
+    .header {
+        padding: 2rem 3%;
+    }
+    section {
+        padding: 10rem 3% 2rem;
+    }
+    .home-content {
+        margin-right: 15%;
+    }
+    .home .profession-container .profession-box {
+        right: -20%;
+    }
+    .home .profession-container .overlay {
+        right: -12%;
+    }
+    .home-img {
+        right: 150px; /* Geser lebih ke kiri */
+        width: 300px; /* Kecilkan lagi */
+    }
+}
+
+/* Tablet Portrait & Mobile Landscape (max-width: 991px) */
+@media (max-width: 991px) {
+    /* Header & Navbar Mobile */
+    #menu-icon {
+        display: block;
+    }
+    #darkMode-icon {
+        position: absolute;
+        right: 7rem;
+        font-size: 2.6rem;
+        color: var(--text-color);
+        margin-bottom: .1rem;
+    }
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: .1rem solid var(--shadow-color);
+        box-shadow: 0 .5rem 1rem var(--shadow-color);
+        display: none;
+    }
+    .navbar.active {
+        display: block;
+    }
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+        color: var(--text-color);
+    }
+    .navbar a.active::before {
+        display: none;
+    }
+
+    /* HOME SECTION - MOBILE SPECIFIC STYLES */
+    .home {
+        flex-direction: column;
+        padding: 10rem 3% 5rem;
+        min-height: auto;
+        text-align: center;
+        height: auto;
+    }
+    .home-content {
+        order: 1;
+        margin-top: 0;
+        text-align: center;
+        margin-right: 0; /* Reset margin untuk mobile */
+    }
+    .home-content .social-media a {
+        margin: 2.5rem 1.5rem 3rem 1.5rem;
+    }
+
+    .home .profession-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        transform: none;
+        top: auto;
+        right: auto;
+        margin-top: 5rem;
+        order: 2;
+        pointer-events: auto;
+        overflow: visible;
+        display: block;
+        /* Hapus properti lebar dari desktop jika mengganggu */
+        width: auto;
+    }
+    .home .profession-container .profession-box {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: auto;
+        right: auto;
+        transform: none;
+        animation: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 2rem 0;
+    }
+    .home .profession-box .profession {
+        position: relative;
+        left: auto;
+        transform: none;
+        flex: 1 1 calc(50% - 1.5rem);
+        max-width: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 1.5rem;
+        box-shadow: 0 .1rem .5rem var(--shadow-color);
+        border-radius: 1rem;
+    }
+    .home .profession-box .profession:nth-child(1) i {
+        margin-right: 0;
+    }
+    .home .profession-box .profession:nth-child(2),
+    .home .profession-box .profession:nth-child(4) {
+        padding-bottom: 1.5rem;
+    }
+    .home .profession i {
+        font-size: 4rem;
+        margin-bottom: .5rem;
+    }
+    .home .profession h3 {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+    .home .profession-box .circle,
+    .home .profession-container .overlay {
+        display: none;
+    }
+    .home-img {
+        display: none; /* SEMBUNYIKAN home-img ENTIRELY DI MOBILE */
+    }
+
+    /* About Section Mobile */
+    .about {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .about-content h2 {
+        text-align: center;
+    }
+    .about-img img {
+        width: 70vw;
+        margin-top: -2rem;
+    }
+
+    /* Project Section Mobile */
+    .project .project-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Testimonial Section Mobile */
+    .testimonial-container .testimonial-wrapper {
+        padding: 5rem 0;
+    }
+    .testimonial-content .testimonial-slide {
+        padding: 3rem 2rem;
+    }
+    .testimonial-box .swiper-button-next,
+    .testimonial-box .swiper-button-prev {
+        display: none;
+    }
+
+    /* Footer Mobile */
+    .footer {
+        padding: 2rem 3%;
+    }
+}
+
+/* Mobile Portrait (max-width: 768px) */
+@media (max-width: 768px) {
+    html {
+        font-size: 50%;
+    }
+    .home {
+        padding-bottom: 3rem;
+    }
+    .home-content h1 {
+        font-size: 5rem;
+    }
+    .home-content h3 {
+        font-size: 2.8rem;
+        line-height: normal;
+    }
+    .home-content p {
+        margin-top: 1rem;
+    }
+
+    .home .profession-container {
+        margin-top: 3rem;
+    }
+    .home .profession-box .profession {
+        flex: 1 1 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .project .project-container {
+        grid-template-columns: 1fr;
+    }
+    .contact form .input-box input {
+        width: 100%;
+    }
+    .footer {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .footer p {
+        margin-top: 2rem;
+    }
+}
+
+/* Mobile Sangat Kecil (max-width: 450px) */
+@media (max-width: 450px) {
+    html {
+        font-size: 45%;
+    }
+    #darkMode-icon {
+        right: 5rem;
+    }
+    .home-content h1 {
+        font-size: 4rem;
+    }
+    .home-content h3 {
+        font-size: 2.4rem;
+    }
+    .home-content p {
+        font-size: 1.4rem;
+    }
+    .home .social-media a {
+        margin: 2rem 1rem;
+    }
+    .btn {
+        padding: 1rem 2.4rem;
+    }
+    .home .profession-box .profession {
+        font-size: 1.8rem;
+    }
+    .home .profession i {
+        font-size: 3rem;
+    }
+    .home .profession h3 {
+        font-size: 1.8rem;
+    }
+    .home .profession-container .profession-box {
+        gap: 1rem;
+    }
+}
+
+
+/* --- Tambahan CSS untuk Responsivitas Mobile (Di dalam @media (max-width: 991px)) --- */
+
+@media (max-width: 991px) {
+    /* Pastikan kode CSS Anda yang sudah ada di media query ini tetap ada. */
+    /* Contohnya: */
+    /*
+    #menu-icon {
+        display: block;
+    }
+    #darkMode-icon {
+        position: absolute;
+        right: 7rem;
+        font-size: 2.6rem;
+        color: var(--text-color);
+        margin-bottom: .1rem;
+    }
+    */
+
+    /* Navbar pada mode mobile */
+    .navbar {
+        position: absolute;
+        top: 100%; /* Pastikan di bawah header */
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: .1rem solid var(--shadow-color);
+        box-shadow: 0 .5rem 1rem var(--shadow-color);
+        display: none; /* Default hidden */
+        /* Animasi slide-down */
+        transform: translateY(-100%); /* Mulai dari atas */
+        opacity: 0;
+        transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        pointer-events: none; /* Mencegah interaksi saat tersembunyi */
+        z-index: 99; /* Pastikan di atas konten lain, tapi di bawah ikon header */
+    }
+
+    .navbar.active {
+        display: block; /* Tampilkan saat aktif */
+        transform: translateY(0); /* Geser ke posisi normal */
+        opacity: 1;
+        pointer-events: all; /* Izinkan interaksi saat terlihat */
+    }
+
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 1.5rem 0; /* Kurangi margin vertikal antar item */
+        color: var(--text-color);
+        padding: 1rem 0; /* Tambahkan padding agar area klik lebih besar */
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Garis pemisah antar menu */
+        text-align: center; /* Pusatkan teks menu */
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Hilangkan border-bottom untuk item terakhir */
+    .navbar a:last-child {
+        border-bottom: none;
+    }
+
+    .navbar a:hover {
+        background-color: var(--second-bg-color); /* Ubah warna latar belakang saat hover */
+        color: var(--main-color);
+    }
+
+    .navbar a.active {
+        color: var(--main-color);
+        font-weight: 700; /* Tebalkan teks menu aktif */
+    }
+
+    .navbar a.active::before {
+        display: none; /* Pastikan tidak ada pseudo-element di mobile */
+    }
+
+    /* Penyesuaian untuk header saat navbar aktif (penting untuk sticky header) */
+    .header.sticky .navbar {
+        background: var(--bg-color); /* Pastikan background tetap konsisten */
+        box-shadow: 0 .5rem 1rem var(--shadow-color); /* Pertahankan shadow dari sticky header */
+    }
+
+    /* Posisi ikon menu dan dark mode untuk memastikan di atas navbar */
+    #darkMode-icon, #menu-icon {
+        z-index: 101; /* Pastikan di atas navbar saat dibuka */
+    }
+
+    /* --- Penyesuaian untuk ukuran layar yang lebih kecil lagi --- */
+
+    @media (max-width: 768px) {
+        .navbar a {
+            font-size: 1.8rem; /* Sedikit perkecil font pada layar sangat kecil */
+        }
+    }
+
+    @media (max-width: 450px) {
+        .navbar a {
+            font-size: 1.6rem;
+            margin: 1rem 0; /* Kurangi margin lebih lanjut */
+            padding: 0.8rem 0;
+        }
+    }
+}

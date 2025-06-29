@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script><style>
+  :root {
+    --bg-dark: #000000;
+    --bg-light: #ffffff;
+    --text-color: #ffffff;
+    --card-bg: #1a1a1a;
+    --accent-yellow: #fdfd96;  /* kuning pastel */
+    --accent-pink: #ffb6c1;    /* soft pink */
+    --accent-blue: #89c3f3;    /* soft blue */
+    --hover-bg: #222222;
+    --logout-red: #e74c3c;
+    --logout-hover: #c0392b;
+  }
+
+  * {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    background-color: var(--card-bg);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+  }
+  .logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  text-decoration: none;
+  display: inline-block;
+}
+  header .logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-yellow);
+    text-decoration: none;
+    text-align: center;
+  }
+
+  header nav a {
+    color: var(--text-color);
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  header nav a:hover {
+    color: var(--accent-pink);
+  }
+
+  .container {
+    flex-grow: 1;
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.05);
+  }
+
+  section {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    color: var(--accent-blue);
+    margin-top: 0;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .admin-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .admin-options a,
+  .admin-options button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    background: #111111;
+    color: var(--text-color);
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  .admin-options a:hover,
+  .admin-options button:hover {
+    background-color: var(--hover-bg);
+    transform: translateY(-5px);
+  }
+
+  .admin-options a span,
+  .admin-options button span {
+    font-size: 3rem;
+    margin-bottom: 7px;
+    line-height: 1;
+    color: var(--accent-yellow);
+  }
+
+  .admin-options button.logout {
+    background-color: var(--logout-red);
+    color: #fff;
+  }
+
+  .admin-options button.logout:hover {
+    background-color: var(--logout-hover);
+  }
+
+  footer {
+    background-color: var(--card-bg);
+    color: var(--accent-pink);
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
+    box-shadow: 0 -2px 10px rgba(255, 255, 255, 0.1);
+  }
+</style>
+
+</head>
+<body onload="window.location.hash = '#home'">
+    <header>
+        <a href="#" class="logo">Dashboard</a>
+    </header>
+
+    <div class="container">
+        <section id="home">
+            <h2> Welcome Admin </h2>
+            <div class="admin-options">
+                <a href="edit.html">
+                    <span></span>
+                    Edit Content
+                </a>
+                <a href="tambah.html">
+                    <span></span>
+                    Add New Content
+                </a>
+                <button onclick="logout()" class="logout">
+                    <span>👋</span>
+                    Log Out
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2025 Nabila Admin Panel &copy;
+    </footer>
+
+    <script>
+        const supabase = window.supabase.createClient(
+            'https://tttsdivqlckeigowtlqu.supabase.co',
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0dHNkaXZxbGNrZWlnb3d0bHF1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MTE4MzQ0MywiZXhwIjoyMDY2NzU5NDQzfQ.xO2uVz5--Y4dp9okjvMqBRh4SfKo73R1EPrmFppwEvA'
+        );
+
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            console.log("Current session data on dashboard:", session);
+            const email = session?.user?.email;
+            if (!session || email !== "nabilagustria@gmail.com") {
+                alert("Akses ditolak. Silakan login kembali.");
+                window.location.href = "login.html";
+            } else {
+                console.log("Pengguna terautentikasi:", email);
+            }
+        }).catch(err => {
+            console.error("Error fetching session on dashboard:", err);
+            alert("Terjadi kesalahan saat memverifikasi sesi. Silakan coba lagi.");
+            window.location.href = "login.html";
+        });
+
+        // Fungsi Logout
+        async function logout() {
+            console.log("Fungsi logout dipanggil dari admin_dashboard.html.");
+            try {
+                const { error } = await supabase.auth.signOut();
+
+                if (error) {
+                    console.error('Error during logout:', error.message);
+                    alert('Gagal logout: ' + error.message);
+                } else {
+                    console.log("Logout berhasil. Mengarahkan ke login.html.");
+                    window.location.href = "login.html"; // Ini adalah redirect yang benar
+                }
+            } catch (e) {
+                console.error("Unexpected error in logout function (admin_dashboard.html):", e);
+                alert("Terjadi kesalahan tak terduga saat logout.");
+            }
+        }
+
+        // --- Fungsi-fungsi lain dari halaman lain tidak perlu ada di sini, kecuali jika memang digunakan di halaman ini ---
+        // Contoh: Jika Anda memanggil `loadProjects()` di halaman ini, maka fungsi `loadProjects` harus didefinisikan di sini.
+        // Jika tidak, hapus panggilan atau definisinya untuk menghindari error "function not found".
+    </script>
+</body>
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Gustria Nabila</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="index.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+    <header class="header">
+
+        <nav class="navbar">
+            <a href="index.html" class="active">Home</a>
+            <a href="articles.html">Articles</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html">Sign In</a>
+        </nav>
+    </header>
+    
+    
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1>Hi, I’m <span>Gustria Nabila</span></h1>
+            <p>I'm An Informatics Engineering student with a strong interest in technology, design, and software development.</p>
+            <div class="social-icons">
+                <a href="https://github.com/zabilaww" target="_blank"><i class='bx bxl-github'></i></a>
+                <a href="https://www.instagram.com/zabilaaw" target="_blank"><i class='bx bxl-instagram-alt'></i></a>
+                <a href="mailto:nabila.gustria@email.com" target="_blank"><i class='bx bx-envelope'></i></a>
+            </div>
+        </div>
+        <div class="about-img">
+            <img src="images/home.png" alt="About Me Image">
+        </div>
+    </section>
+    
+    <section class="about" id="about">
+      <div class="about-content" style="position: relative;">
+        <h2 class="heading">Biodata</h2>
+    
+        <!-- Gambar Tikus Kiri Atas -->
+        <img src="images/tikus.png" alt="Tikus Kiri" 
+             style="position: absolute; top: -10px; left: -10px; width: 80px; height: auto; z-index: 1;">
+    
+        <!-- Gambar Tikus Kanan Bawah -->
+        <img src="images/bunga.png" alt="Tikus Kanan" 
+             style="position: absolute; bottom: -10px; right: -10px; width: 80px; height: auto; z-index: 1; transform: rotate(15deg);">
+    
+        <!-- Teks Biodata -->
+        <p style="position: relative; z-index: 2;">
+          Halo! Aku Gustria Nabila, mahasiswa Teknik Informatika yang saat ini sedang fokus mendalami dunia 
+          UI/UX Development. Dengan tipe kepribadian INTJ, aku terbiasa berpikir strategis, terstruktur, 
+          dan selalu mencari cara kreatif untuk menyelesaikan masalah. Bagiku, desain bukan sekadar tampilan 
+          yang menarik, tapi soal bagaimana membuat pengguna merasa nyaman, paham, dan benar-benar terbantu saat menggunakannya. 
+          Di situlah menurutku seni dan logika berpadu, menciptakan pengalaman yang bermakna.
+    
+          Aku menikmati proses eksplorasi dalam merancang antarmuka yang intuitif dan fungsional. 
+          Setiap proyek aku anggap sebagai kesempatan untuk terus belajar, berkembang, dan memahami 
+          apa yang benar-benar dibutuhkan oleh pengguna. Impianku jelas: menjadi seorang UI/UX Developer 
+          profesional yang mampu menciptakan solusi digital yang nggak hanya indah secara visual, 
+          tapi juga punya dampak nyata dalam kehidupan sehari-hari.
+        </p>
+      </div>
+    </section>
+    
+
+    <section class="article-list" id="education">
+        <h2 class="heading">Education</h2>
+        <div class="education-container">
+            
+            <div class="education-box">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h3>UNIVERSITAS MARITIM RAJA ALI HAJI</h3>
+                <span class="year">2022 - Sekarang</span>
+                <p>Program Studi Teknik Informatika. Fokus pada pengembangan aplikasi, UI/UX, dan teknologi AR/VR.</p>
+            </div>
+    
+            <div class="education-box">
+                <i class="fa-solid fa-school"></i>
+                <h3>SMA NEGERI 1 RANAI</h3>
+                <span class="year">2019 - 2022</span>
+                <p>Jurusan IPA</p>
+            </div>
+    
+            <div class="education-box">
+                <i class="fa-solid fa-school"></i>
+                <h3>SMP NEGERI 1 RANAI</h3>
+                <span class="year">2016 - 2019</span>
+            </div>
+    
+            <div class="education-box">
+                <i class="fa-solid fa-school"></i>
+                <h3>SDN 001 RANAI</h3>
+                <span class="year">2010 - 2016</span>
+            </div>
+    
+            <div class="education-box">
+                <i class="fa-solid fa-child"></i>
+                <h3>TK MUSLIMAH NU</h3>
+                <span class="year">2009 - 2010</span>
+            </div>
+    
+        </div>
+    </section>
+    
+    <!-- Link Font Awesome CDN untuk icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    
+
+    <!-- Skills -->
+    <section class="article-list" id="skills">
+        <h2 class="heading">Skills</h2>
+        <div class="skills-grid">
+    
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+                <p>HTML</p>
+                <div class="progress">
+                    <div style="width: 98%; color: orange;">98%</div>
+                </div>
+            </div>
+    
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+                <p>CSS</p>
+                <div class="progress">
+                    <div style="width: 96%; color: blue;">96%</div>
+                </div>
+            </div>
+    
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                <p>JavaScript</p>
+                <div class="progress">
+                    <div style="width: 93%; color: yellow;">93%</div>
+                </div>
+            </div>
+    
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+                <p>PHP</p>
+                <div class="progress">
+                    <div style="width: 95%; color: purple;">95%</div>
+                </div>
+            </div>
+    
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                <p>Python</p>
+                <div class="progress">
+                    <div style="width: 91%; color: green;">91%</div>
+                </div>
+            </div>
+    
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma">
+                <p>Figma</p>
+                <div class="progress">
+                    <div style="width: 94%; color: deeppink;">94%</div>
+                </div>
+            </div>
+    
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg" alt="Canva" style="background: white; border-radius: 5px;">
+                <p>Canva</p>
+                <div class="progress">
+                    <div style="width: 97%; color: darkorange;">97%</div>
+                </div>
+            </div>
+    
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                <p>VS Code</p>
+                <div class="progress">
+                    <div style="width: 92%; color: teal;">92%</div>
+                </div>
+            </div>
+    
+            <div class="skill-card">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                <p>GitHub</p>
+                <div class="progress">
+                    <div style="width: 90%; color: black;">90%</div>
+                </div>
+            </div>
+    
+        </div>
+    </section>
+    
+
+ <!-- Projects -->
+ <section class="article-list" id="projects"> 
+    <h2 class="heading">Projects</h2>
+    <div class="project-grid">
+      <div class="project-item">
+        <img src="images/peta.jfif" alt="IKN Design Case">
+        <div class="tech-tags">
+          <span>Python</span>
+          <span>Tkinter</span>
+          <span>Pillow</span>
+        </div>
+        <p>Pada mata kuliah Perancangan Analisis Algoritma, saya bersama tim mengembangkan sebuah program dengan pendekatan Case-Based Method untuk mendesain Kota IKN (Ibu Kota Nusantara). Program ini dibangun menggunakan bahasa pemrograman Python, dengan memanfaatkan library Tkinter dan Pillow.</p>
+      </div>
+    
+      <div class="project-item">
+        <img src="images/3d.jfif" alt="3D World Design">
+        <div class="tech-tags">
+          <span>C++</span>
+          <span>OpenGL</span>
+          <span>Visual Studio</span>
+        </div>
+        <p>Pada mata kuliah Grafika Komputer, saya bersama tim mengembangkan sebuah proyek 32 World Design dengan memanfaatkan API OpenGL. Proyek ini dibuat menggunakan bahasa pemrograman C++ dan dikembangkan melalui Visual Studio 2022 sebagai IDE. Dengan OpenGL, kami mampu merancang dunia virtual tiga dimensi yang terdiri dari berbagai objek, tekstur, dan efek pencahayaan.</p>
+      </div>
+  
+      <div class="project-item">
+        <img src="images/blynk.jfif" alt="Monitoring Jangkrik IoT">
+        <div class="tech-tags">
+          <span>ESP32</span>
+          <span>DHT11</span>
+          <span>Blynk</span>
+        </div>
+        <p>
+          Pada mata kuliah Masyarakat Cerdas, saya dan tim mengembangkan sistem <em>Monitoring Suhu dan Kelembaban pada Budidaya Jangkrik</em> menggunakan platform Blynk IoT. Platform ini memungkinkan pemantauan perangkat secara real-time melalui aplikasi smartphone, serta mendukung integrasi dengan berbagai sensor dan modul komunikasi.
+        </p>
+      </div>
+       <!-- Baris ke-2 -->
+       <div class="project-item">
+        <img src="images/dokusi.jfif" alt="Kolaborasi Dokumen Terdistribusi">
+        <div class="tech-tags">
+          <span>ReactJS</span>
+          <span>TailwindCSS</span>
+          <span>ExpressJS</span>
+          <span>MongoDB</span>
+          <span>React Quill</span>
+        </div>
+        <p>
+          Pada mata kuliah Sistem Terdistribusi, saya dan tim membuat platform pengeditan dokumen kolaboratif real-time yang menjamin sinkronisasi dan konsistensi. Aplikasi ini dibangun dengan ReactJS, TailwindCSS, ExpressJS, MongoDB, dan React Quill untuk pengalaman pengguna yang interaktif dan responsif.
+        </p>
+      </div>
+      <div class="project-item">
+        <img src="images/agromart.jfif" alt="Website Produk Pertanian Desa">
+        <div class="tech-tags">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+          <span>PHP</span>
+          <span>Node.js</span>
+          <span>MySQL</span>
+        </div>
+        <p>
+          Pada mata kuliah Perancangan dan Implementasi Perangkat Lunak, saya dan tim menyusun spesifikasi kebutuhan dan membangun website untuk pembelian produk pertanian di desa. Sistem ini menggunakan HTML, CSS, JavaScript di sisi frontend, serta PHP dan Node.js di backend, dengan MySQL untuk penyimpanan data.
+        </p>
+      </div>
+      <div class="project-item">
+        <img src="images/rupi.jfif" alt="Game Petualangan Si Rupi">
+        <div class="tech-tags">
+          <span>Flutter</span>
+          <span>Dart</span>
+          <span>Cross-Platform</span>
+        </div>
+        <p>
+          Pada mata kuliah Pemrograman Mobile, saya dan tim mengembangkan game edukatif <em>Petualangan Si Rupi: Misi Menjaga Rupiah</em> menggunakan Flutter SDK. Game ini dirancang dengan satu basis kode untuk Android & iOS, dengan Dart sebagai bahasa pemrograman utama untuk logika permainan, animasi, dan alur aplikasi.
+        </p>
+      </div>
+      <div class="project-item">
+        <img src="images/mppl.jfif" alt="Game Petualangan Si Rupi">
+        <div class="tech-tags">
+          <span>Figma</span>
+        </div>
+        <p>
+            Pada mata kuliah Manajemen Proyek Perangkat Lunak, saya dan tim mengembangkan aplikasi absensi magang berbasis Android dengan fitur GPS dan kamera untuk memastikan kehadiran peserta magang di lokasi yang ditentukan secara akurat dan real-time.
+        </p>
+      </div>
+      <div class="project-item">
+        <img src="images/imk.jfif" alt="Website Maritime Express">
+        <div class="tech-tags">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+        </div>
+        <p>
+          Pada mata kuliah Interaksi Manusia dan Komputer, saya dan tim mengembangkan website *Maritime Express* menggunakan HTML, CSS, dan JavaScript. Website ini dirancang untuk memberikan pengalaman pengguna yang informatif dan responsif dalam layanan ekspedisi pengiriman barang.
+        </p>
+      </div>
+      <div class="project-item">
+        <img src="images/sso.jfif" alt="Implementasi SSO Diskominfo Tanjungpinang">
+        <div class="tech-tags">
+          <span>Laravel 10</span>
+          <span>OAuth 2.0</span>
+          <span>SSO</span>
+        </div>
+        <p>
+          Pada kegiatan Kerja Praktik, saya dan tim membuat proyek berjudul <em>Implementasi Single Sign-On (SSO) Menggunakan Laravel dan OAuth2</em> (Studi Kasus: Dinas Komunikasi dan Informatika Kota Tanjungpinang). Sistem ini memungkinkan pengguna untuk mengakses berbagai aplikasi internal hanya dengan satu kali login secara aman dan efisien.
+        </p>
+      </div>
+      
+    </div>
+  </section>
+
+   <!-- Experience -->
+   <section class="article-list" id="experience">
+    <h2 class="heading">Experience</h2>
+  <div class="experience-gallery">
+    <div class="card-container">
+      <div class="card">
+        <div class="card-front">
+          <img src="images/mascer.jpeg" alt="Masyarakat Cerdas">
+        </div>
+        <div class="card-back">
+          <img src="images/mascer.jpeg" alt="Masyarakat Cerdas">
+          <p>Pada mata kuliah Masyarakat Cerdas, saya bersama tim melaksanakan kegiatan lapangan di Desa Toapaya. Kami mengembangkan proyek "Monitoring Suhu dan Kelembaban pada Budidaya Jangkrik melalui Platform Blynk IoT".</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card-container">
+      <div class="card">
+        <div class="card-front">
+          <img src="images/kp.jpeg" alt="Kerja Praktik">
+        </div>
+        <div class="card-back">
+          <img src="images/kp.jpeg" alt="Kerja Praktik">
+          <p>Pada mata kuliah Kerja Praktik, saya praktik di Diskominfo Tanjungpinang. Proyek: "Implementasi SSO Menggunakan Laravel dan OAuth 2.0".</p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card-container">
+      <div class="card">
+        <div class="card-front">
+          <img src="images/nari.jpeg" alt="Kegiatan Organisasi">
+        </div>
+        <div class="card-back">
+          <img src="images/nari.jpeg" alt="Kegiatan Organisasi">
+          <p>Pada HUT Teknik Informatika 2024, saya tampil membawakan Tari Persembahan sebagai bagian dari kontribusi seni budaya kampus.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+  <script>
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+    });
+  </script>
+
+<section class="article-list" id="organization"> 
+    <h2 class="heading">Organization</h2>
+    <div class="article-container">
+        
+        <div class="article-box">
+            <div class="img-container">
+                <img src="images/bem.jfif" alt="BEM FTTK 2024">
+                <div class="img-overlay">BEM FTTK 2024</div>
+            </div>
+            <div class="article-content">
+                <h4>Badan Eksekutif Mahasiswa FTTK 2024</h4>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-text">
+        <p>Made by © Gustria Nabila | All Rights Reserved.</p>
+    </div>
+</footer>
+<section id="konten">
+  <div id="konten-container"></div>
+</section>
+
+<!-- Script Animasi Scroll Reveal -->
+<script src="https://unpkg.com/scrollreveal"></script>
+<script>
+  // ScrollReveal dengan efek blur dan muncul dari bawah
+ScrollReveal().reveal('.home-content, .about-content, .education-box, .skills-grid, .project-item, .experience-gallery, .article-box', {
+  distance: '50px',
+  duration: 500,
+  easing: 'ease-in-out',
+  origin: 'bottom',
+  interval: 100,
+  opacity: 0,
+  scale: 0.95,
+  cleanup: true
+});
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="index.js"></script>
+    
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <section id="project-list"></section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script>
+      const supabase = window.supabase.createClient(
+        'https://tttsdivqlckeigowtlqu.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR0dHNkaXZxbGNrZWlnb3d0bHF1Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MTE4MzQ0MywiZXhwIjoyMDY2NzU5NDQzfQ.xO2uVz5--Y4dp9okjvMqBRh4SfKo73R1EPrmFppwEvA'
+      );
+    
+      async function loadProjects() {
+    const { data, error } = await supabaseClient.from('projects').select('*');
+    if (error) {
+        console.error('Error:', error);
+        return;
+    }
+
+    const container = document.getElementById('project-container');
+    container.innerHTML = ''; // kosongkan dulu
+
+    data.forEach(item => {
+        const card = `
+            <div class="project-card">
+                <img src="${item.image_url}" alt="${item.title}">
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>
+                <a href="${item.link}" target="_blank">Lihat</a>
+            </div>`;
+        container.innerHTML += card;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', loadProjects);
+ // Panggil saat halaman dimuat
+    </script>
+    
+    <!-- Floating Navigation -->
+    <div class="floating-nav">
+      <a href="#about" title="Biodata"><i class="fas fa-user"></i></a>
+      <a href="#education" title="Education"><i class="fas fa-graduation-cap"></i></a>
+      <a href="#skills" title="Skills"><i class="fas fa-tools"></i></a>
+      <a href="#projects" title="Projects"><i class="fas fa-code"></i></a>
+      <a href="#experience" title="Experience"><i class="fas fa-briefcase"></i></a>
+      <a href="#organization" title="Organization"><i class="fas fa-users"></i></a>
+    </div>
+    
+
+</body>
+</html>

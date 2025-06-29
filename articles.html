@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Articles</title>
+
+  <!-- External CSS & Icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+
+  <!-- Internal CSS Fix -->
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Definisi Variabel Warna untuk Mode Terang (Default) */
+:root {
+    --bg-color: #000000;    
+    --text-color: #f0ff69;
+    --main-color: #f0ff69;
+    --white-color: #cfe1b9;
+    --black-color: #000;
+    --shadow-color: rgba(0, 0, 0, .2);
+    --second-bg-color: #000000;
+}
+
+
+.article-container {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+/* Seleksi Teks */
+*::selection {
+    background: var(--main-color);
+    color: var(--bg-color);
+}
+
+/* HTML dan Body Dasar */
+html {
+    font-size: 62.5%; /* 1rem = 10px */
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 2rem 7%;
+  color: #681e1e;
+  position: static;
+}
+
+.navbar {
+  display: flex;
+  gap: 2rem;
+  color: #434a42;
+  position: static;
+}
+
+.navbar a {
+  margin: 0;
+  color: #434a42;
+}
+
+
+.navbar a.active {
+  color: #d5a021;
+    text-shadow: 0 0 8px #d5a021, 0 0 15px #d5a021;
+}
+
+.navbar a:hover {
+  text-shadow: 0 0 8px #d5a021, 0 0 15px #d5a021;
+}
+
+.navbar a.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 0.2rem;
+    background: var(--white-color);
+}
+
+.articles-hero {
+  margin-top: 5px;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+  padding: 10rem 5% 5rem;
+  position: relative;
+}
+
+.articles-hero .heading {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  position: relative;
+  z-index: 2;
+}
+
+
+.articles-hero p {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  max-width: 700px;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .articles-hero .heading {
+    font-size: 4rem;
+  }
+  .articles-hero p {
+    font-size: 1.6rem;
+  }
+}
+
+.article-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+
+  max-width: 1100px;      /* batasi lebar kontainer */
+  margin: 0 auto;         /* tengahin kontainer */
+  justify-content: center;/* baris bawah bisa tengah */
+}
+
+
+.article-box {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 0 12px #f0ff69;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 20px #f0ff69;
+}
+
+.article-box img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.article-content {
+  padding: 2rem;
+  flex: 1;
+}
+
+.article-content .article-date {
+  font-size: 1.2rem;
+  color: #777;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.article-content .article-date i {
+  margin-right: 5px;
+  color: #adc178;
+}
+
+.article-content h4 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #414833;
+}
+
+.article-content h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.article-content p {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.article-btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #414833;
+  color: white;
+  border-radius: 0.6rem;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.3rem;
+  transition: 0.3s ease;
+}
+
+.article-btn:hover {
+  background: #fff;
+  color: #414833;
+  border: 1px solid #414833;
+}
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: center; /* atau space-between kalau tetap 2 kolom */
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 2rem 7%;
+  background: #fffffffd;
+  gap: 2rem;
+}
+
+.footer-text {
+  width: 100%;
+  text-align: center;
+}
+
+
+.footer-text p {
+    font-size: 1.6rem;
+    color: #718355
+    
+}
+
+.footer-iconTop a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    background: var(--white-color);
+    border-radius: .8rem;
+    border: .2rem solid var(--main-color);
+    outline: .2rem solid transparent;
+    transition: .5s ease;
+}
+
+.footer-iconTop a:hover {
+    outline-color: var(--white-color);
+}
+
+.footer-iconTop a i {
+    font-size: 2.4rem;
+    color: var(--text-color);
+}
+
+  </style>
+</head>
+
+<body>
+  <header class="header">
+      <nav class="navbar">
+          <a href="index.html" >Home</a>
+          <a href="articles.html" class="active">Articles</a>
+          <a href="contact.html">Contact</a>
+          <a href="login.html">Sign In</a>
+      </nav>
+  </header>
+
+  <section class="articles-hero">
+    <h1 class="heading">Eksplorasi <span class="glow-circle">Artikel</span> Pilihan</h1>
+    <p>Seputar teknologi, pemrograman, dan pengembangan digital.</p>
+  </section>
+  
+
+  <section class="article-list" id="articles">
+    <div class="article-container">
+  
+      <div class="article-box">
+        <img src="images/laravel.png" alt="Artikel Laravel">
+        <div class="article-content">
+          <span class="article-date"><i class='bx bx-calendar'></i> 12 Agustus 2023</span>
+          <h4><a href="https://medium.com/@osvaldogarcia_67748/setup-oauth2-with-laravel-4df7e96c724f" target="_blank">Implementasi SSO Laravel & OAuth2</a></h4>
+          <p>Menerapkan autentikasi tunggal (SSO) dengan Laravel 10 & OAuth2 untuk efisiensi login.</p>
+          <a href="https://medium.com/@osvaldogarcia_67748/setup-oauth2-with-laravel-4df7e96c724f" target="_blank" class="article-btn">Baca Selengkapnya</a>
+        </div>
+      </div>
+  
+      <div class="article-box">
+        <img src="images/flutter.svg" alt="Artikel Flutter">
+        <div class="article-content">
+          <span class="article-date"><i class='bx bx-calendar'></i> 19 Mei 2025</span>
+          <h4><a href="https://docs.flutter.dev/ui" target="_blank">UI Mobile dengan Flutter</a></h4>
+          <p>Membuat antarmuka lintas platform dengan Flutter dan bahasa Dart yang efisien.</p>
+          <a href="https://docs.flutter.dev/ui" target="_blank" class="article-btn">Baca Selengkapnya</a>
+        </div>
+      </div>
+  
+      <div class="article-box">
+        <img src="images/js.jfif" alt="Artikel JavaScript">
+        <div class="article-content">
+          <span class="article-date"><i class='bx bx-calendar'></i> 20 Juni 2025</span>
+          <h4><a href="https://www.codepolitan.com/interactive-coding/javascript/" target="_blank">Dasar Interaktif JavaScript</a></h4>
+          <p>Pelajari variabel, fungsi, event, dan DOM untuk website dinamis dan interaktif.</p>
+          <a href="https://www.codepolitan.com/interactive-coding/javascript/" target="_blank" class="article-btn">Baca Selengkapnya</a>
+        </div>
+      </div>
+  
+      <div class="article-box">
+        <img src="images/firebase.jpeg" alt="Artikel Firebase">
+        <div class="article-content">
+          <span class="article-date"><i class='bx bx-calendar'></i> 14 Januari 2020</span>
+          <h4><a href="https://www.dumetschool.com/blog/menggunakan-realtime-database-pada-firebase-part-1" target="_blank">Data Dinamis dari Firebase</a></h4>
+          <p>Koneksi real-time antara Firestore dan antarmuka web menggunakan JavaScript.</p>
+          <a href="https://www.dumetschool.com/blog/menggunakan-realtime-database-pada-firebase-part-1" target="_blank" class="article-btn">Baca Selengkapnya</a>
+        </div>
+      </div>
+  
+      <div class="article-box">
+        <img src="images/php.png" alt="Artikel PHP">
+        <div class="article-content">
+          <span class="article-date"><i class='bx bx-calendar'></i> 10 Juni 2025</span>
+          <h4><a href="https://www.malasngoding.com/membuat-form-login-dengan-php-dan-mysql/" target="_blank">Login PHP & MySQL</a></h4>
+          <p>Sistem login sederhana menggunakan PHP procedural dan database MySQL.</p>
+          <a href="https://www.malasngoding.com/membuat-form-login-dengan-php-dan-mysql/" target="_blank" class="article-btn">Baca Selengkapnya</a>
+        </div>
+      </div>
+      <div class="article-box">
+        <img src="images/mongo.jfif" alt="Artikel PHP">
+        <div class="article-content">
+          <span class="article-date"><i class='bx bx-calendar'></i> 07 Januari 2025</span>
+          <h4><a href="https://www.petanikode.com/tutorial-dasar-mongodb/" target="_blank">Belajar cara menggunakan MongoDB</a></h4>
+          <p>MongoDB adalah salah satu jenis database NoSQL yang berbasis dokumen dengan format JSON.</p>
+          <a href="https://www.petanikode.com/tutorial-dasar-mongodb/" target="_blank" class="article-btn">Baca Selengkapnya</a>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="footer-text">
+        <p>Made by © Gustria Nabila | All Rights Reserved.</p>
+    </div>
+</footer>
+
+
+</body>
+</html>
